@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/Users/juda/lab_alma/multinest_pruebas/supernova_lcdm_multinest.py", line 73, in <module>
+    pymultinest.run(
+    ~~~~~~~~~~~~~~~^
+        loglike,
+        ^^^^^^^^
+    ...<5 lines>...
+        n_live_points=2000
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/anaconda3/envs/labas/lib/python3.13/site-packages/pymultinest/run.py", line 285, in run
+    lib.run(*args_converted)
+    ^^^^^^^
+  File "/opt/anaconda3/envs/labas/lib/python3.13/ctypes/__init__.py", line 403, in __getattr__
+    func = self.__getitem__(name)
+  File "/opt/anaconda3/envs/labas/lib/python3.13/ctypes/__init__.py", line 408, in __getitem__
+    func = self._FuncPtr((name_or_ordinal, self))
+AttributeError: dlsym(RTLD_DEFAULT, run): symbol not found
