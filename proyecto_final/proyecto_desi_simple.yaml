@@ -1,0 +1,69 @@
+likelihood:
+  bao.desi_dr2.desi_bao_all:
+    path: ~/cobaya_packages
+
+theory:
+  classy:
+    path: ~/cobaya_packages
+    extra_args:
+      N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      T_ncdm: 0.71611
+
+params:
+  H0:
+    prior:
+      min: 60
+      max: 80
+    ref:
+      dist: norm
+      loc: 68
+      scale: 2
+    proposal: 0.5
+    latex: H_0
+
+  ombh2:
+    prior:
+      min: 0.018
+      max: 0.026
+    ref:
+      dist: norm
+      loc: 0.0224
+      scale: 0.0005
+    proposal: 0.0002
+    latex: \Omega_b h^2
+
+  omch2:
+    prior:
+      min: 0.08
+      max: 0.16
+    ref:
+      dist: norm
+      loc: 0.12
+      scale: 0.002
+    proposal: 0.001
+    latex: \Omega_c h^2
+
+  omk:
+    value: 0
+    drop: true
+  tau_reio:
+    value: 0.054
+    drop: true
+  n_s:
+    value: 0.965
+    drop: true
+  A_s:
+    value: 2.1e-9
+    drop: true
+
+sampler:
+  multinest:
+    path: ~/cobaya_packages
+    nlive: 500
+    max_ndead: -1
+    tol: 0.5
+    boost_posterior: 0.0
+
+output: chains/desi_dr2_lcdm
