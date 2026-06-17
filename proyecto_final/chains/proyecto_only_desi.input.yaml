@@ -1,0 +1,53 @@
+theory:
+  classy:
+    extra_args:
+      N_ncdm: 1
+      N_ur: 2.0328
+likelihood:
+  bao.desi_dr2.desi_bao_all: null
+params:
+  omegabh2:
+    prior:
+      min: 0.02
+      max: 0.0245
+    ref:
+      dist: norm
+      loc: 0.02218
+      scale: 0.00055
+    proposal: 0.0001
+    latex: \omega_\mathrm{b}
+  omegach2:
+    prior:
+      min: 0.001
+      max: 0.99
+    ref:
+      dist: norm
+      loc: 0.12
+      scale: 0.01
+    proposal: 0.005
+    latex: \omega_\mathrm{c}
+  H0:
+    prior:
+      min: 50
+      max: 90
+    ref:
+      dist: norm
+      loc: 67.5
+      scale: 2
+    proposal: 1
+    latex: H_0
+  mnu: 0.06
+  ns: 0.9649
+  As: 2.1e-09
+  tau: 0.0544
+  omegam:
+    latex: \Omega_\mathrm{m}
+  rdrag:
+    latex: r_\mathrm{drag}
+sampler:
+  mcmc:
+    burn_in: 100
+    max_tries: 1000000
+    Rminus1_stop: 0.02
+    Rminus1_cl_stop: 0.2
+output: proyecto_only_desi

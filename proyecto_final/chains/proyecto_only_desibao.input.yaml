@@ -1,40 +1,31 @@
-likelihood:
-  bao.desi_dr2.desi_bao_all: Null
-
 theory:
   classy:
-
     extra_args:
       N_ur: 2.0328
       N_ncdm: 1
       m_ncdm: 0.06
       T_ncdm: 0.71611
-
+likelihood:
+  bao.desi_dr2.desi_bao_all: null
 params:
   H0:
     prior:
       min: 50
       max: 90
-
     proposal: 0.5
     latex: H_0
-
   omega_b:
     prior:
-      min: 0.015
-      max: 0.030
-
+      min: 0.02
+      max: 0.025
     proposal: 0.0001
     latex: \Omega_\mathrm{b} h^2
-
   omega_cdm:
     prior:
-      min: 0.10
+      min: 0.1
       max: 0.14
-
     proposal: 0.001
     latex: \Omega_\mathrm{c} h^2
-
   omk:
     value: 0
     drop: true
@@ -45,15 +36,12 @@ params:
     value: 0.9649
     drop: true
   A_s:
-    value: 2.1e-9
+    value: 2.1e-09
     drop: true
-
 sampler:
   mcmc:
     burn_in: 100
     max_tries: 10000
     Rminus1_stop: 0.02
     Rminus1_cl_stop: 0.2
-
-
-output: chains/proyecto_only_desibao_plano
+output: proyecto_only_desibao

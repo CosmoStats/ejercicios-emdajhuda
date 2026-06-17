@@ -1,0 +1,6 @@
+[0 : output] Output to be read-from/written-into folder 'chains', with prefix 'proyecto_only_desi'
+[mpiexec@MacBook-Air-de-Administrador.local] HYDU_sock_read (lib/utils/sock.c:206): read error (Input/output error)
+[mpiexec@MacBook-Air-de-Administrador.local] stdin_cb (mpiexec/pmiserv_cb.c:248): error reading from stdin
+[mpiexec@MacBook-Air-de-Administrador.local] HYDT_dmxu_poll_wait_for_event (lib/tools/demux/demux_poll.c:76): callback returned error status
+[mpiexec@MacBook-Air-de-Administrador.local] HYD_pmci_wait_for_completion (mpiexec/pmiserv_pmci.c:180): error waiting for event
+[mpiexec@MacBook-Air-de-Administrador.local] main (mpiexec/mpiexec.c:261): process manager error waiting for completion
