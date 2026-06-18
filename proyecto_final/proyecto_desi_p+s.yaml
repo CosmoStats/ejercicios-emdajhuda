@@ -1,5 +1,6 @@
 likelihood:
-  bao.desi_dr2.desi_bao_all: Null
+  sn.pantheonplus: null
+  bao.desi_dr2.desi_bao_all: null
 
 theory:
   classy:
@@ -63,4 +64,4 @@ sampler:
     Rminus1_cl_stop: 0.2
 
 
-output: chains/proyecto_only_desibao/proyecto_only_desibao
+output: chains/proyecto_only_desibao_p+s/proyecto_only_desibao_p+s

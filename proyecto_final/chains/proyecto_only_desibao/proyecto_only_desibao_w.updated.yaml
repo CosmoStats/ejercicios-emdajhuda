@@ -8,6 +8,7 @@ theory:
       N_ncdm: 1
       m_ncdm: 0.06
       T_ncdm: 0.71611
+      Omega_Lambda: 0
     ignore_obsolete: false
     renames:
       As: A_s
@@ -35,11 +36,6 @@ theory:
       yhe: YHe
       yheused: YHe
     version: v3.3.4
-    input_params:
-    - H0
-    - omega_b
-    - omega_cdm
-    output_params: []
 likelihood:
   bao.desi_dr2.desi_bao_all:
     path: null
@@ -60,8 +56,6 @@ likelihood:
     grid_file: null
     stop_at_error: false
     version: null
-    input_params: []
-    output_params: []
 params:
   H0:
     prior:
@@ -85,6 +79,14 @@ params:
     latex: \Omega_\mathrm{c} h^2
     renames:
     - omegach2
+  w:
+    prior:
+      min: -3
+      max: -0.333
+    proposal: 0.001
+    latex: w
+    renames:
+    - w0_fld
   omk:
     value: 0
     drop: true
@@ -103,6 +105,14 @@ params:
     drop: true
     renames:
     - As
+  Omega_m:
+    latex: \Omega_\mathrm{m}
+    derived: true
+    renames:
+    - omegam
+  Omega_k_1000:
+    derived: 'lambda omk: 1000 * omk'
+    latex: 10^{3}\,\Omega_\mathrm{k}
   chi2__BAO:
     latex: \chi^2_\mathrm{BAO}
     derived: true
@@ -136,6 +146,7 @@ sampler:
       - - H0
         - omega_b
         - omega_cdm
+        - w
     callback_function: null
     callback_every: null
     seed: null
@@ -143,6 +154,6 @@ sampler:
     oversample: null
     drag_limits: null
     fallback_covmat_scale: 4
-    version: 3.6.2
-output: proyecto_only_desibao_plano
+    version: null
+output: proyecto_only_desibao_w
 version: 3.6.2

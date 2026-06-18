@@ -35,9 +35,12 @@ params:
     proposal: 0.001
     latex: \Omega_\mathrm{c} h^2
 
-  omk:
-    value: 0
-    drop: true
+  omegak:
+    prior:
+      min: -0.3
+      max: 0.3
+    proposal: 0.001
+
   tau_reio:
     value: 0.0544
     drop: true
@@ -52,7 +55,7 @@ params:
     latex: \Omega_\mathrm{m}
 
   Omega_k_1000:
-    derived: 'lambda omk: 1000 * omk'
+    derived: 'lambda omegak: 1000 * omegak'
     latex: '10^{3}\,\Omega_\mathrm{k}'
 
 sampler:
@@ -63,4 +66,4 @@ sampler:
     Rminus1_cl_stop: 0.2
 
 
-output: chains/proyecto_only_desibao/proyecto_only_desibao
+output: chains/proyecto_only_desibao/proyecto_only_desibao_ok

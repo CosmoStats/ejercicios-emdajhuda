@@ -4,8 +4,10 @@ theory:
     speed: 0.2
     stop_at_error: false
     extra_args:
-      N_ncdm: 1
       N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      T_ncdm: 0.71611
     ignore_obsolete: false
     renames:
       As: A_s
@@ -34,17 +36,25 @@ theory:
       yheused: YHe
     version: v3.3.4
     input_params:
-    - omegabh2
-    - omegach2
     - H0
-    - mnu
-    - ns
-    - As
-    - tau
+    - omega_b
+    - omega_cdm
     output_params:
-    - omegam
-    - rdrag
+    - Omega_m
 likelihood:
+  sn.pantheonplus:
+    path: null
+    dataset_file: PantheonPlus/config.dataset
+    dataset_params: null
+    aliases:
+    - PantheonPlus
+    use_abs_mag: false
+    speed: 100
+    type: SN
+    stop_at_error: false
+    version: null
+    input_params: []
+    output_params: []
   bao.desi_dr2.desi_bao_all:
     path: null
     measurements_file: bao_data/desi_bao_dr2/desi_gaussian_bao_ALL_GCcomb_mean.txt
@@ -67,73 +77,66 @@ likelihood:
     input_params: []
     output_params: []
 params:
-  omegabh2:
-    prior:
-      min: 0.02
-      max: 0.0245
-    ref:
-      dist: norm
-      loc: 0.02218
-      scale: 0.00055
-    proposal: 0.0001
-    latex: \omega_\mathrm{b}
-    renames:
-    - omega_b
-  omegach2:
-    prior:
-      min: 0.001
-      max: 0.99
-    ref:
-      dist: norm
-      loc: 0.12
-      scale: 0.01
-    proposal: 0.005
-    latex: \omega_\mathrm{c}
-    renames:
-    - omega_cdm
   H0:
     prior:
       min: 50
       max: 90
-    ref:
-      dist: norm
-      loc: 67.5
-      scale: 2
-    proposal: 1
+    proposal: 0.5
     latex: H_0
-  mnu:
-    value: 0.06
-  ns:
-    value: 0.9649
+  omega_b:
+    prior:
+      min: 0.015
+      max: 0.03
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
     renames:
-    - n_s
-  As:
-    value: 2.1e-09
+    - omegabh2
+  omega_cdm:
+    prior:
+      min: 0.1
+      max: 0.14
+    proposal: 0.001
+    latex: \Omega_\mathrm{c} h^2
     renames:
-    - A_s
-  tau:
+    - omegach2
+  omk:
+    value: 0
+    drop: true
+  tau_reio:
     value: 0.0544
+    drop: true
     renames:
-    - tau_reio
-  omegam:
+    - tau
+  n_s:
+    value: 0.9649
+    drop: true
+    renames:
+    - ns
+  A_s:
+    value: 2.1e-09
+    drop: true
+    renames:
+    - As
+  Omega_m:
     latex: \Omega_\mathrm{m}
     derived: true
     renames:
-    - Omega_m
-  rdrag:
-    latex: r_\mathrm{drag}
-    derived: true
-    renames:
-    - rs_drag
+    - omegam
+  Omega_k_1000:
+    derived: 'lambda omk: 1000 * omk'
+    latex: 10^{3}\,\Omega_\mathrm{k}
   chi2__BAO:
     latex: \chi^2_\mathrm{BAO}
+    derived: true
+  chi2__SN:
+    latex: \chi^2_\mathrm{SN}
     derived: true
 sampler:
   mcmc:
     sampler_type: mcmc
     supports_periodic_params: true
     burn_in: 100
-    max_tries: 1000000
+    max_tries: 10000
     covmat: null
     covmat_params: null
     proposal_scale: 2.4
@@ -153,7 +156,11 @@ sampler:
     oversample_power: 0.4
     oversample_thin: true
     drag: false
-    blocking: null
+    blocking:
+    - - 1
+      - - H0
+        - omega_b
+        - omega_cdm
     callback_function: null
     callback_every: null
     seed: null
@@ -161,6 +168,6 @@ sampler:
     oversample: null
     drag_limits: null
     fallback_covmat_scale: 4
-    version: null
-output: proyecto_only_desi
+    version: 3.6.2
+output: proyecto_only_desibao_p+s
 version: 3.6.2

@@ -34,7 +34,14 @@ theory:
       helium_delta_redshift: helium_fullreio_width
       yhe: YHe
       yheused: YHe
-    version: null
+    version: v3.3.4
+    input_params:
+    - H0
+    - omega_b
+    - omega_cdm
+    - omegak
+    output_params:
+    - Omega_m
 likelihood:
   bao.desi_dr2.desi_bao_all:
     path: null
@@ -55,6 +62,8 @@ likelihood:
     grid_file: null
     stop_at_error: false
     version: null
+    input_params: []
+    output_params: []
 params:
   H0:
     prior:
@@ -64,8 +73,8 @@ params:
     latex: H_0
   omega_b:
     prior:
-      min: 0.02
-      max: 0.025
+      min: 0.015
+      max: 0.03
     proposal: 0.0001
     latex: \Omega_\mathrm{b} h^2
     renames:
@@ -78,9 +87,13 @@ params:
     latex: \Omega_\mathrm{c} h^2
     renames:
     - omegach2
-  omk:
-    value: 0
-    drop: true
+  omegak:
+    prior:
+      min: -0.3
+      max: 0.3
+    proposal: 0.001
+    renames:
+    - Omega_k
   tau_reio:
     value: 0.0544
     drop: true
@@ -96,6 +109,14 @@ params:
     drop: true
     renames:
     - As
+  Omega_m:
+    latex: \Omega_\mathrm{m}
+    derived: true
+    renames:
+    - omegam
+  Omega_k_1000:
+    derived: 'lambda omegak: 1000 * omegak'
+    latex: 10^{3}\,\Omega_\mathrm{k}
   chi2__BAO:
     latex: \chi^2_\mathrm{BAO}
     derived: true
@@ -129,6 +150,7 @@ sampler:
       - - H0
         - omega_b
         - omega_cdm
+        - omegak
     callback_function: null
     callback_every: null
     seed: null
@@ -136,6 +158,6 @@ sampler:
     oversample: null
     drag_limits: null
     fallback_covmat_scale: 4
-    version: null
-output: proyecto_only_desibao
+    version: 3.6.2
+output: proyecto_only_desibao_ok
 version: 3.6.2
