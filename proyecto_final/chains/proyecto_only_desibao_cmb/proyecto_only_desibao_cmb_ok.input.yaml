@@ -1,0 +1,72 @@
+theory:
+  classy:
+    extra_args:
+      N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      T_ncdm: 0.71611
+      output: tCl,pCl,lCl
+      l_max_scalars: 2508
+likelihood:
+  bao.desi_dr2.desi_bao_all: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_2018_highl_plik.TTTEEE_lite: null
+params:
+  H0:
+    prior:
+      min: 60
+      max: 80
+    proposal: 0.5
+    latex: H_0
+  omega_b:
+    prior:
+      min: 0.015
+      max: 0.03
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omega_cdm:
+    prior:
+      min: 0.1
+      max: 0.14
+    proposal: 0.001
+    latex: \Omega_\mathrm{c} h^2
+  logA:
+    prior:
+      min: 2
+      max: 4
+    proposal: 0.001
+    latex: \log(10^{10} A_\mathrm{s})
+    drop: true
+  A_s:
+    value: 'lambda logA: 1e-10*np.exp(logA)'
+    latex: A_\mathrm{s}
+  n_s:
+    prior:
+      min: 0.88
+      max: 1.06
+    proposal: 0.002
+    latex: n_\mathrm{s}
+  tau_reio:
+    prior:
+      min: 0.01
+      max: 0.15
+    proposal: 0.003
+    latex: \tau_\mathrm{reio}
+  omegak:
+    prior:
+      min: -0.03
+      max: 0.03
+    proposal: 0.001
+  Omega_m:
+    latex: \Omega_\mathrm{m}
+  Omega_k_1000:
+    derived: 'lambda omegak: 1000 * omegak'
+    latex: 10^{3}\,\Omega_\mathrm{k}
+sampler:
+  mcmc:
+    burn_in: 100
+    max_tries: 100
+    Rminus1_stop: 0.02
+    Rminus1_cl_stop: 0.2
+output: proyecto_only_desibao_cmb_ok
