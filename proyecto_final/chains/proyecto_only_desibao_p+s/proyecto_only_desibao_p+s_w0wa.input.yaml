@@ -1,0 +1,66 @@
+theory:
+  classy:
+    extra_args:
+      N_ur: 2.0328
+      N_ncdm: 1
+      m_ncdm: 0.06
+      T_ncdm: 0.71611
+      Omega_Lambda: 0
+likelihood:
+  sn.pantheonplus: null
+  bao.desi_dr2.desi_bao_all: null
+params:
+  H0:
+    prior:
+      min: 50
+      max: 90
+    proposal: 0.5
+    latex: H_0
+  omega_b:
+    prior:
+      min: 0.015
+      max: 0.03
+    proposal: 0.0001
+    latex: \Omega_\mathrm{b} h^2
+  omega_cdm:
+    prior:
+      min: 0.1
+      max: 0.14
+    proposal: 0.001
+    latex: \Omega_\mathrm{c} h^2
+  w:
+    prior:
+      min: -3
+      max: 1
+    proposal: 0.01
+    latex: w_0
+  wa:
+    prior:
+      min: -3
+      max: 2
+    proposal: 0.05
+    latex: w_a
+  omk:
+    value: 0
+    drop: true
+  tau_reio:
+    value: 0.0544
+    drop: true
+  n_s:
+    value: 0.9649
+    drop: true
+  A_s:
+    value: 2.1e-09
+    drop: true
+  Omega_m:
+    latex: \Omega_\mathrm{m}
+  Omega_k_1000:
+    derived: 'lambda omk: 1000 * omk'
+    latex: 10^{3}\,\Omega_\mathrm{k}
+sampler:
+  mcmc:
+    burn_in: 100
+    max_tries: 10000
+    Rminus1_stop: 0.02
+    Rminus1_cl_stop: 0.2
+output: proyecto_only_desibao_p+s_w0wa
